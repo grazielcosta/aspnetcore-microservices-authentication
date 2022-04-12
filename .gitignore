@@ -3,3 +3,7 @@
 ################################################################################
 
 *.suo
+/.vs
+/SecureMicroservices/.vs
+/SecureMicroservices/Movie.API/bin
+/SecureMicroservices/Movie.API/obj
