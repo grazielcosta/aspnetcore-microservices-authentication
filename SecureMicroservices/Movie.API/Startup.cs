@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Movies.API.Data;
 
@@ -11,7 +12,8 @@ namespace Movie.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public const string AUTHENTICATION_SCHEME = "Bearer";
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
         }
@@ -30,6 +32,20 @@ namespace Movie.API
 
             services.AddDbContext<MovieAPIContext>(options =>
                     options.UseInMemoryDatabase("Movies"));
+
+            services.AddAuthentication(AUTHENTICATION_SCHEME)
+                .AddJwtBearer(AUTHENTICATION_SCHEME, options =>
+                {
+                    options.Authority = Configuration.GetValue<string>("OpenId:Authority");
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+                });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ClientIdPolicy", policy => policy.RequireClaim("client_id", "movieClient"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +62,7 @@ namespace Movie.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -133,3 +133,4 @@ D:\udemy\aspnetcore-microservices-authentication\SecureMicroservices\Movie.API\o
 D:\udemy\aspnetcore-microservices-authentication\SecureMicroservices\Movie.API\obj\Debug\net5.0\Movies.API.pdb
 D:\udemy\aspnetcore-microservices-authentication\SecureMicroservices\Movie.API\obj\Debug\net5.0\Movies.API.genruntimeconfig.cache
 D:\udemy\aspnetcore-microservices-authentication\SecureMicroservices\Movie.API\obj\Debug\net5.0\ref\Movies.API.dll
+D:\udemy\aspnetcore-microservices-authentication\SecureMicroservices\Movie.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
