@@ -1,29 +1,5 @@
-# Microservices Architecture and Implementation on .NET 5
+# Securing .Net 5 Microservices with IdentityServer4 using OAuth2, OpenID Connect and Ocelot Api Gateway
 
-### Course based: https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet/
+### Course based: https://www.udemy.com/course/secure-net-microservices-with-identityserver4-oauth2openid/
 
-###### ASPNET Core Web API Development of Microservices
-###### REST API Principles, CRUD Operations
-###### Mongo DB and Redis NoSQL Database Connection on Docker
-###### Entity Framework Core with SQL Server Database Connection on Docker
-###### N-Layer implementation with Repository Pattern
-###### Swagger Open API implementation
-###### Consume Discount Grpc Service for inter-service sync communication to calculate product final price
-###### Publish BasketCheckout Queue with using MassTransit and RabbitMQ
-###### Build a Highly Performant inter-service gRPC Communication with Basket Microservice
-###### Using Dapper for micro-orm implementation to simplify data access and ensure high performance
-###### PostgreSQL database connection and containerization
-###### Async Microservices Communication with RabbitMQ Message-Broker Service
-###### Using RabbitMQ Publish/Subscribe Topic Exchange Model
-###### Using MassTransit for abstraction over RabbitMQ Message-Broker system
-###### Implementing DDD, CQRS, and Clean Architecture with using Best Practices
-###### Developing CQRS with using MediatR, FluentValidation and AutoMapper packages
-###### Consuming RabbitMQ BasketCheckout event queue with using MassTransit-RabbitMQ Configuration
-###### Using Entity Framework Core ORM and auto migrate to SqlServer when application startup
-###### Ocelot API Gateway Development of Microservices
-###### Call Ocelot APIs with HttpClientFactory
-###### The Gateway aggregatttern in Shopping Aggregator
-###### ASPNET Core Web Application with Bootstrap 4 and Razor template
-###### Docker Compose Containerization of All Microservices
-###### Use Portainer for Container lightweight management UI which allows you to easily manage your different Docker environments
-###### pgAdmin PostgreSQL Tools feature rich Open Source administration and development platform for PostgreSQL
+##### Secure microservices with using standalone Identity Server 4 and backing with Ocelot API Gateway. ASP.NET Web MVC and API applications with using OAuth2 and OpenID Connect in IdentityServer4. Securing web application and API with tokens, working with claims, authentication and authorization middlewares and applying policies.
