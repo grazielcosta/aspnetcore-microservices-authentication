@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Movies.Client.ApiServices;
 using Movies.Client.Models;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Movies.Client.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
         private readonly IMovieApiService _movieApiService;
@@ -16,11 +21,22 @@ namespace Movies.Client.Controllers
         }
 
 
+        public async Task LogTokenAndClaims()
+        {
+            var identityToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.IdToken);
 
+            Debug.WriteLine($"Identity token: {identityToken}");
+
+            foreach (var claim in User.Claims)
+            {
+                Debug.WriteLine($"Claim type: {claim.Type} - Claim value: {claim.Value}");
+            }
+        }
 
         // GET: Movies
         public async Task<IActionResult> Index()
         {
+            _ = LogTokenAndClaims();
             return View(await _movieApiService.GetMovies());
         }
 

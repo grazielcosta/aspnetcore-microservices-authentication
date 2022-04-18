@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,8 +22,29 @@ namespace Movies.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
             services.AddScoped<IMovieApiService, MovieApiService>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+            {
+                options.Authority = Configuration.GetValue<string>("OpenId:Authority");
+                options.ClientId = Configuration.GetValue<string>("OpenId:ClientId");
+                options.ClientSecret = Configuration.GetValue<string>("OpenId:ClientSecret");
+                options.ResponseType = Configuration.GetValue<string>("OpenId:ResponseType");
+                options.UsePkce = true;
+
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+
+                options.SaveTokens = true;
+
+                options.GetClaimsFromUserInfoEndpoint = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +65,7 @@ namespace Movies.Client
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
