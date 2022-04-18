@@ -7,3 +7,7 @@
 /SecureMicroservices/.vs
 /SecureMicroservices/Movie.API/bin
 /SecureMicroservices/Movie.API/obj
+/SecureMicroservices/IdentityServer/bin
+/SecureMicroservices/IdentityServer/obj
+/SecureMicroservices/Movies.Client/bin
+/SecureMicroservices/Movies.Client/obj
